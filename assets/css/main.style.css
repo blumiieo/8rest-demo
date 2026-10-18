@@ -342,8 +342,10 @@ body {
 @media (max-width: 991.98px) {
   .app-wrapper {
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+        height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
   }
   .hero-content-area {
     flex: 1 0 auto;
