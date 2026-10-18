@@ -80,7 +80,15 @@ body {
 .top-promo-bar__phone:hover {
   color: var(--c-white);
 }
-
+/* MOB RESPONSIVE */
+@media (max-width: 991.98px) {
+  .top-promo-bar__tag {
+    font-size: 0.2rem;
+  }
+  .top-promo-bar {
+    font-size: 0.5rem;
+  }
+}
 /* =========================================================
    3. NAVIGATION START (Floating Pill Header - Untouched logic)
    ========================================================= */
