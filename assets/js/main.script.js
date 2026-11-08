@@ -1,50 +1,53 @@
 //HOME HERO SECTION & NAV START
 document.addEventListener("DOMContentLoaded", function () {
-      if (typeof WOW !== "undefined") {
-        new WOW({
-          boxClass: 'wow',
-          animateClass: 'animate__animated',
-          offset: 10,
-          mobile: true,
-          live: true
-        }).init();
-      }
+  if (typeof WOW !== "undefined") {
+    new WOW({
+      boxClass: "wow",
+      animateClass: "animate__animated",
+      offset: 10,
+      mobile: true,
+      live: true,
+    }).init();
+  }
 
-      // Mobile Menu Toggle & Accessibility
-      const navToggle = document.getElementById('navToggle');
-      const mobileMenu = document.getElementById('mobileMenu');
-      const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+  // Mobile Menu Toggle & Accessibility
+  const navToggle = document.getElementById("navToggle");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const mobileLinks = document.querySelectorAll(".mobile-nav-link");
 
-      function toggleMenu(forceClose = false) {
-        const isCurrentlyOpen = navToggle.getAttribute('aria-expanded') === 'true';
-        const willOpen = forceClose ? false : !isCurrentlyOpen;
+  function toggleMenu(forceClose = false) {
+    const isCurrentlyOpen = navToggle.getAttribute("aria-expanded") === "true";
+    const willOpen = forceClose ? false : !isCurrentlyOpen;
 
-        navToggle.setAttribute('aria-expanded', willOpen);
-        mobileMenu.classList.toggle('is-open', willOpen);
-        mobileMenu.setAttribute('aria-hidden', !willOpen);
-        document.body.classList.toggle('menu-open', willOpen);
-      }
+    navToggle.setAttribute("aria-expanded", willOpen);
+    mobileMenu.classList.toggle("is-open", willOpen);
+    mobileMenu.setAttribute("aria-hidden", !willOpen);
+    document.body.classList.toggle("menu-open", willOpen);
+  }
 
-      navToggle.addEventListener('click', function (e) {
-        e.stopPropagation();
-        toggleMenu();
-      });
+  navToggle.addEventListener("click", function (e) {
+    e.stopPropagation();
+    toggleMenu();
+  });
 
-      mobileLinks.forEach(link => {
-        link.addEventListener('click', function () {
-          toggleMenu(true);
-        });
-      });
-
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && navToggle.getAttribute('aria-expanded') === 'true') {
-          toggleMenu(true);
-        }
-      });
+  mobileLinks.forEach((link) => {
+    link.addEventListener("click", function () {
+      toggleMenu(true);
     });
-    // HOME HERO SECTION & NAV END
+  });
 
-    // HOME SECTION 7 REVIEWS SLIDER START
+  document.addEventListener("keydown", function (e) {
+    if (
+      e.key === "Escape" &&
+      navToggle.getAttribute("aria-expanded") === "true"
+    ) {
+      toggleMenu(true);
+    }
+  });
+});
+// HOME HERO SECTION & NAV END
+
+// HOME SECTION 7 REVIEWS SLIDER START
 document.addEventListener("DOMContentLoaded", function () {
   const track = document.getElementById("reviewsTrack");
   const prevBtn = document.getElementById("reviewPrevBtn");
@@ -103,10 +106,10 @@ document.addEventListener("DOMContentLoaded", function () {
   // Initial call on page load
   syncSlider();
 });
-    // HOME SECTION 7 REVIEWS SLIDER END
+// HOME SECTION 7 REVIEWS SLIDER END
 
-    // HOME SECTION 8 FAQ ACCORDION START
-    document.addEventListener("DOMContentLoaded", function () {
+// HOME SECTION 8 FAQ ACCORDION START
+document.addEventListener("DOMContentLoaded", function () {
   const faqItems = document.querySelectorAll(".faq-item");
 
   faqItems.forEach(function (item) {
@@ -146,9 +149,62 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Re-calculate heights if viewport resizes while an item is expanded
   window.addEventListener("resize", function () {
-    document.querySelectorAll(".faq-item.is-open .faq-body").forEach(function (body) {
-      body.style.maxHeight = body.scrollHeight + "px";
-    });
+    document
+      .querySelectorAll(".faq-item.is-open .faq-body")
+      .forEach(function (body) {
+        body.style.maxHeight = body.scrollHeight + "px";
+      });
   });
 });
-    // HOME SECTION 8 FAQ ACCORDION END
+// HOME SECTION 8 FAQ ACCORDION END
+
+// CONTACT FORM OPTION POPUP START
+document
+  .querySelectorAll(".custom-select-dropdown .dropdown-item")
+  .forEach(function (item) {
+    item.addEventListener("click", function (e) {
+      e.preventDefault();
+      var selectedVal = this.getAttribute("data-value");
+
+      // Update display text and hidden input value
+      document.getElementById("selectedOptionText").textContent = selectedVal;
+      document.getElementById("product_interest").value = selectedVal;
+
+      // Update active highlight
+      document
+        .querySelectorAll(".custom-select-dropdown .dropdown-item")
+        .forEach(function (el) {
+          el.classList.remove("active");
+        });
+      this.classList.add("active");
+    });
+  });
+// CONTACT FORM OPTION POPUP END
+
+/* BACK TO TOP FLOATING BUTTON START */
+  (function () {
+    const btn = document.getElementById('btnScrollTop');
+    if (!btn) return;
+
+    // Show button when scrolled halfway down or approaching bottom
+    window.addEventListener('scroll', function () {
+      const scrollPos = window.scrollY || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      
+      // Reveals button once user scrolls past 350px or 40% of the page
+      if (scrollPos > 350 || (scrollPos / scrollHeight) > 0.4) {
+        btn.classList.add('is-visible');
+      } else {
+        btn.classList.remove('is-visible');
+      }
+    }, { passive: true });
+
+    // Smooth scroll to top on click
+    btn.addEventListener('click', function () {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  })();
+/* BACK TO TOP FLOATING BUTTON END */
