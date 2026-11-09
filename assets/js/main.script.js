@@ -10,6 +10,20 @@ document.addEventListener("DOMContentLoaded", function () {
     }).init();
   }
 
+  // Navbar Scroll Background Toggle
+  const navPill = document.querySelector(".nav-pill");
+  if (navPill) {
+    function handleNavScroll() {
+      if (window.scrollY > 30) {
+        navPill.classList.add("is-scrolled");
+      } else {
+        navPill.classList.remove("is-scrolled");
+      }
+    }
+    window.addEventListener("scroll", handleNavScroll, { passive: true });
+    handleNavScroll(); // Run on initial page load
+  }
+
   // Mobile Menu Toggle & Accessibility
   const navToggle = document.getElementById("navToggle");
   const mobileMenu = document.getElementById("mobileMenu");
